@@ -149,25 +149,29 @@ Threat levels are color-coded throughout the UI and HTML report:
 
 ### Option A — Install via Setup Wizard (Recommended)
 
-1. Download `MNScanTool_Setup.exe` from the [Releases](https://github.com/hussaini021/releases) page
+1. Download `MNScanTool_Setup.exe` from the [Releases](https://github.com/hussaini021/usb-scan-tool/releases) page
 2. Run the installer as Administrator
 3. Follow the setup wizard — accept the license, choose install folder
 4. MN Scan Tool will install, create shortcuts, and register for Windows auto-start
 5. Done — it's running silently in the background, ready to intercept any USB
 
-### Option B — Run from Source
+### ## 💾 Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/hussaini021/usb-scan-tool.git
-cd usb-scan-tool
+### ⬇️ Quick Download
 
-# Install dependencies
-pip install pillow pywin32
+**[Download MNScanTool_Setup.exe v1.0.0](https://github.com/hussaini021/usb-scan-tool/releases/download/v1.0.0/MNScanTool_Setup.exe)** 
+*(Windows 10/11, 64-bit)*
 
-# Run the tool (Windows only, requires Admin)
-python mn_scan_tool.py
-```
+Or view all releases: [github.com/hussaini021/usb-scan-tool/releases](https://github.com/hussaini021/usb-scan-tool/releases)
+
+---
+
+### Option A — Install via Setup Wizard (Recommended)
+
+1. Download the `.exe` file using the link above
+2. Run as Administrator
+3. Follow the setup wizard
+4. Done ✅
 
 > ⚠️ **Administrator privileges are required** for USB monitoring and Windows Defender integration.
 
