@@ -17,7 +17,7 @@
 
 *The moment a USB device connects — ShieldScan Pro blocks it, scans every file across 9 detection engines, and only grants access if the device is clean.*
 
-[⬇ Download v5.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0) · [⬇ Download v1.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v1.0.0) · [Report Bug](https://github.com/hussaini021/usb-scan-tool/issues)
+[⬇ Download v2.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v2.0.0) · [⬇ Download v1.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v1.0.0) · [Report Bug](https://github.com/hussaini021/usb-scan-tool/issues)
 
 </div>
 
