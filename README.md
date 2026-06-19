@@ -1,34 +1,23 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/Platform-Windows%2010%2F11-0078d4?style=for-the-badge&logo=windows&logoColor=white"/>
-<img src="https://img.shields.io/badge/Python-3.11+-3572A5?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/Version-1.0.0-4cde9a?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/License-Expires%20Oct%202026-f5d142?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Status-Active-4cde9a?style=for-the-badge"/>
+<img src="logo.png" width="140" alt="ShieldScan Pro Logo"/>
 
-<br/><br/>
+# ShieldScan Pro — USB Guardian
 
-```
-███╗   ███╗███╗   ██╗    ███████╗ ██████╗ █████╗ ███╗   ██╗    ████████╗ ██████╗  ██████╗ ██╗
-████╗ ████║████╗  ██║    ██╔════╝██╔════╝██╔══██╗████╗  ██║    ╚══██╔══╝██╔═══██╗██╔═══██╗██║
-██╔████╔██║██╔██╗ ██║    ███████╗██║     ███████║██╔██╗ ██║       ██║   ██║   ██║██║   ██║██║
-██║╚██╔╝██║██║╚██╗██║    ╚════██║██║     ██╔══██║██║╚██╗██║       ██║   ██║   ██║██║   ██║██║
-██║ ╚═╝ ██║██║ ╚████║    ███████║╚██████╗██║  ██║██║ ╚████║       ██║   ╚██████╔╝╚██████╔╝███████╗
-╚═╝     ╚═╝╚═╝  ╚═══╝    ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝       ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
-```
+**Advanced USB Threat Detection for Windows**
 
-# 🔍 MN Scan Tool
-### USB Device Security Scanner for Windows
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/hussaini021/usb-scan-tool/releases)
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3572A5?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![PySide6](https://img.shields.io/badge/UI-PySide6-41cd52?style=for-the-badge&logo=qt&logoColor=white)](https://doc.qt.io/qtforpython/)
+[![Version](https://img.shields.io/badge/Version-5.0.0-4cde9a?style=for-the-badge)](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0)
+[![License](https://img.shields.io/badge/License-Expires%20Oct%202026-f5d142?style=for-the-badge)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active-4cde9a?style=for-the-badge)](https://github.com/hussaini021/usb-scan-tool)
 
-**Plug in. Scan. Stay safe.**  
-A lightweight yet powerful security tool that intercepts USB devices the moment they connect and scans every file before granting access — protecting your system from malware, ransomware, keyloggers, and hidden payloads.
+**Plug in. Block. Scan. Stay safe.**
 
-<br/>
+*The moment a USB device connects — ShieldScan Pro blocks it, scans every file across 9 detection engines, and only grants access if the device is clean.*
 
-> *Built from scratch by one developer, with no team, no funding, and no shortcuts.*  
-> *Every line of code was written in stolen hours, fueled by determination.*
-
-<br/>
+[⬇ Download v5.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0) · [⬇ Download v1.0.0](https://github.com/hussaini021/usb-scan-tool/releases/tag/v1.0.0) · [Report Bug](https://github.com/hussaini021/usb-scan-tool/issues)
 
 </div>
 
@@ -36,271 +25,266 @@ A lightweight yet powerful security tool that intercepts USB devices the moment 
 
 ## 📋 Table of Contents
 
+- [What's New in v5](#-whats-new-in-v5)
 - [Overview](#-overview)
-- [Key Features](#-key-features)
+- [Features](#-features)
 - [Detection Engines](#-detection-engines)
 - [Threat Levels](#-threat-levels)
 - [Installation](#-installation)
 - [How It Works](#-how-it-works)
-- [Screenshots](#-screenshots)
 - [Requirements](#-requirements)
 - [Building from Source](#-building-from-source)
+- [Release History](#-release-history)
 - [Author](#-author)
+
+---
+
+## 🚀 What's New in v5
+
+Version 5.0.0 is a complete rewrite from the ground up. Every weakness in v1.0 was identified, documented, and fixed.
+
+| Area | v1.0 (Old) | v5.0.0 (Current) |
+|------|-----------|-----------------|
+| **UI Framework** | Tkinter (legacy) | PySide6 — Windows 11 Fluent dark theme |
+| **Navigation** | Single window | Sidebar: Dashboard · Scan · USB · Reports · Settings |
+| **Scan Engine** | Single-threaded | `ThreadPoolExecutor` — up to 8 parallel workers |
+| **USB Monitor** | Blocking WMI `NextEvent()` — hangs in EXE | `ctypes.GetLogicalDrives()` polling — reliable everywhere |
+| **Startup** | 7-second fake splash | 2-second real splash |
+| **GUI Thread** | Blocking operations on UI | All workers on `QThread` — zero UI freezing |
+| **Crash Logging** | None — silent failures | `sys.excepthook` → rotating log at `%APPDATA%\ShieldScanPro\logs\` |
+| **Progress Updates** | Every single file → queue flood | Throttled to max once per 150 ms |
+| **Report Generation** | On GUI thread → freeze | `ReportWorker(QThread)` → background |
+| **SHA-256** | Every file, always | Only for flagged files → 2× faster on clean drives |
+| **Signatures** | 34 patterns | 47 patterns + 13 new threat types |
+| **Installer** | Manual | NSIS wizard with auto-start, uninstaller, Add/Remove Programs |
+
+> **14 documented bugs fixed.** Full audit notes are in the source file header.
 
 ---
 
 ## 🧭 Overview
 
-**MN Scan Tool** is a Windows desktop application that acts as a security gate for every USB device connected to your computer. The moment a flash drive, external hard disk, or any storage device is plugged in — **MN Scan Tool blocks access**, performs a deep multi-engine scan, and only releases the device if it passes all security checks.
+**ShieldScan Pro** is a Windows security application that acts as an active gate for every USB storage device. Unlike passive antivirus software, it intercepts devices **before** access is granted and runs a full multi-engine scan — signatures, entropy, EXIF metadata, PE injection detection, LNK analysis, Office macros, PDF payloads, and more.
 
-Unlike traditional antivirus software that monitors the whole system passively, MN Scan Tool takes an **active, intercept-first** approach: **the device is blocked until proven clean.**
+The application runs silently at Windows startup, uses minimal CPU/RAM when idle, and only springs into action the moment a removable device is detected.
+
+> *Built entirely by one student developer. No team. No funding. Every line written from scratch.*
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-| Feature | Description |
-|---|---|
-| 🔌 **Auto USB Intercept** | Detects and blocks any new USB device the instant it connects via WMI event monitoring |
-| 🛡️ **Windows Defender Integration** | Triggers a live Defender custom scan on the USB drive and reports the result |
-| 🔬 **Deep Multi-Engine Scan** | Runs 9 independent detection engines simultaneously on every file |
-| 📊 **Shannon Entropy Analysis** | Detects encrypted/packed payloads by measuring file randomness |
-| 🖼️ **EXIF Metadata Inspection** | Scans image EXIF fields for injected scripts and malicious keywords |
-| 🧬 **PE Injection Detection** | Finds Windows executables hidden inside image, video, and document files |
-| 📎 **LNK Shortcut Analysis** | Detects malicious `.lnk` files that silently execute dropper commands |
-| 📄 **Office Macro Detection** | Identifies VBA macros in Word, Excel, and PowerPoint documents |
-| 🎭 **Polyglot File Detection** | Exposes files that are simultaneously valid in two formats to bypass filters |
-| 📹 **Video Metadata Scanning** | Scans MP4/MOV container atoms for injected script payloads |
-| 🔡 **Extension Spoofing Detection** | Catches double-extension and Unicode RLO name tricks |
-| #️⃣ **SHA-256 Hashing** | Computes cryptographic hash for every scanned file |
-| ⚡ **Fast Mode / Deep Mode** | Choose between quick scan (signatures only) or full deep scan with entropy + EXIF |
-| 🚀 **Auto-Start at Boot** | Registers itself in Windows startup — always running silently in the background |
-| 📑 **HTML Security Report** | Generates a detailed, styled HTML report with all findings, file paths, and hashes |
-| 🌙 **Silent Background Mode** | Runs invisibly in system tray with `/background` flag, pops up only when a threat is found |
+### Core Protection
+- 🔌 **Real-time USB Interception** — device blocked the instant it connects
+- 🛡 **Windows Defender Integration** — triggers a live custom Defender scan in parallel
+- 🔬 **9-Engine Deep Scan** — runs all detection modules on every file
+- ⚡ **Parallel Scanning** — up to 8 simultaneous file scan threads
+- 🚀 **Auto-Start at Boot** — always running, invisible until needed
+
+### Modern Interface
+- 🌙 **Windows 11 Dark Theme** — PySide6 with custom QSS styling
+- 🗂 **Sidebar Navigation** — Dashboard, Scan, USB, Reports, Settings
+- 📊 **Live Stat Cards** — files scanned, threats found, critical count, speed
+- 🔔 **Toast Notifications** — slide-in alerts for USB events and scan results
+- 📈 **Real-time Progress** — ETA, files/sec, per-category threat counters
+
+### Reporting & Diagnostics
+- 📑 **Professional HTML Reports** — auto-generated after each scan, opens in browser
+- 📋 **Security Score** — 0–100 score based on threat severity and count
+- 🗃 **Reports History** — browse, open, manage all past scan reports
+- 📝 **Rotating Log File** — crash-safe diagnostics at `%APPDATA%\ShieldScanPro\logs\`
+- 💥 **Crash Handler** — unhandled exceptions written to disk, dialog shown to user
 
 ---
 
 ## 🔬 Detection Engines
 
-MN Scan Tool uses **9 independent detection modules** that work in parallel:
+ShieldScan Pro runs **9 independent engines** on every file:
+
+| Engine | What It Finds |
+|--------|--------------|
+| **Signature Scanner** | 47 malicious patterns — PowerShell, C2, ransomware, keyloggers, injectors |
+| **PE Injection Detector** | Windows executables hidden inside image/video/document files |
+| **Shannon Entropy Analyzer** | Encrypted or packed payloads disguised as normal files |
+| **EXIF Metadata Inspector** | JavaScript, PowerShell, or C2 URLs injected into image EXIF fields |
+| **VBA Macro Detector** | AutoOpen/AutoClose macros in Word, Excel, PowerPoint |
+| **LNK Shortcut Analyzer** | `.lnk` files that silently execute dropper commands on click |
+| **Polyglot File Detector** | Files valid in two formats simultaneously (ZIP inside JPG, etc.) |
+| **PDF Payload Scanner** | `/JavaScript`, `/Launch`, and embedded EXE inside PDF containers |
+| **Video Metadata Scanner** | Scripts injected into MP4/MOV container atoms |
+
+**+ Name Spoofing Checks:**
+- Double extension (`photo.jpg.exe`)
+- Unicode Right-to-Left Override (hides true extension)
+- Known autorun trigger filenames (`autorun.inf`, `desktop.ini`)
+
+### Signature Coverage (47 Patterns)
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                    SCAN ENGINE PIPELINE                     │
-├──────────────────┬──────────────────────────────────────────┤
-│  1. Signatures   │  50+ known malicious byte patterns       │
-│                  │  (PowerShell, IEX, reverse shells, C2s)  │
-├──────────────────┼──────────────────────────────────────────┤
-│  2. PE Injection │  Finds EXE headers hidden in media files  │
-├──────────────────┼──────────────────────────────────────────┤
-│  3. Entropy      │  Shannon entropy > 7.5 → packed payload  │
-├──────────────────┼──────────────────────────────────────────┤
-│  4. EXIF         │  Scripts/keywords in image metadata       │
-├──────────────────┼──────────────────────────────────────────┤
-│  5. LNK          │  Malicious Windows shortcut analysis      │
-├──────────────────┼──────────────────────────────────────────┤
-│  6. OLE Macros   │  VBA AutoOpen/Shell in Office documents   │
-├──────────────────┼──────────────────────────────────────────┤
-│  7. Polyglot     │  ZIP-in-image, JS-in-PDF detection        │
-├──────────────────┼──────────────────────────────────────────┤
-│  8. Video Meta   │  Injected payloads in MP4/MOV atoms       │
-├──────────────────┼──────────────────────────────────────────┤
-│  9. Name Spoof   │  Double extension, Unicode RLO, autorun   │
-└──────────────────┴──────────────────────────────────────────┘
+PowerShell abuse      invoke-expression, encodedcommand, bypass, iex(, downloadstring
+Remote execution      mshta, certutil, rundll32, regsvr32, installutil, regasm, wmic
+Keyloggers            GetAsyncKeyState, SetWindowsHookEx
+Credential theft      LoginData, sqlite, credential, mimikatz, lsass
+Reverse shells        nc -e, reverse shell
+C2 infrastructure     discord.com/api, pastebin.com, .onion
+Ransomware            encryptfile, vssadmin delete, bcdedit /set, ransom note text
+Persistence           autorun.inf, registry Run key, schtasks
+Process injection     CreateRemoteThread, VirtualAlloc, WriteProcessMemory
+Privilege escalation  whoami /priv, net user /add, netsh firewall
 ```
-
-### Signature Coverage (50+ Patterns)
-The signature engine detects threats including:
-- PowerShell abuse (`invoke-expression`, `encodedcommand`, `bypass`)
-- Remote code execution (`mshta`, `certutil`, `rundll32`, `regsvr32`)
-- Keyloggers (`GetAsyncKeyState`, `SetWindowsHookEx`)
-- Browser credential theft (`LoginData`, SQLite access)
-- Reverse shells (`nc -e`, reverse shell markers)
-- C2 infrastructure (`discord.com/api`, `pastebin.com`, `.onion`)
-- Ransomware payloads (`encryptfile`, ransom note text)
-- Persistence mechanisms (`autorun.inf`, registry `Run` key writes)
-- Process injection (`CreateRemoteThread`, `VirtualAlloc`, `WriteProcessMemory`)
 
 ---
 
 ## 🚦 Threat Levels
 
-```
-  ● CLEAN      No threats detected — device is safe
-  ● LOW        Minor concern — suspicious but low risk
-  ● MEDIUM     Moderate risk — review recommended
-  ● HIGH       Serious threat — do not use this file
-  ● CRITICAL   Active threat — device is blocked
-```
-
-Threat levels are color-coded throughout the UI and HTML report:
-
-| Level | Color | Action |
-|---|---|---|
-| CLEAN | 🟢 Green | Device access granted |
-| LOW | 🔵 Blue | Warning issued |
-| MEDIUM | 🟡 Yellow | User prompted to confirm |
-| HIGH | 🟠 Orange | Strong warning, blocked by default |
-| CRITICAL | 🔴 Red | Device permanently blocked |
+| Level | Color | Meaning | Action |
+|-------|-------|---------|--------|
+| `CLEAN` | 🟢 Green | No threats found | Device access granted |
+| `LOW` | 🔵 Blue | Minor concern | Warning logged |
+| `MEDIUM` | 🟡 Yellow | Moderate risk | User prompted |
+| `HIGH` | 🟠 Orange | Serious threat | Strong warning |
+| `CRITICAL` | 🔴 Red | Active threat | Device blocked, immediate alert |
 
 ---
 
 ## 💾 Installation
 
-### Option A — Install via Setup Wizard (Recommended)
+### Option A — Setup Wizard (Recommended)
 
-1. Download `MNScanTool_Setup.exe` from the [Releases](https://github.com/hussaini021/usb-scan-tool/releases) page
-2. Run the installer as Administrator
-3. Follow the setup wizard — accept the license, choose install folder
-4. MN Scan Tool will install, create shortcuts, and register for Windows auto-start
-5. Done — it's running silently in the background, ready to intercept any USB
+1. Go to [**Releases**](https://github.com/hussaini021/usb-scan-tool/releases)
+2. Download `ShieldScanPro_Setup_v5.0.0.exe`
+3. **Run as Administrator**
+4. Accept the trilingual license (English / دری / پښتو)
+5. Click Install — done ✅
 
-### ## 💾 Installation
-
-### ⬇️ Quick Download
-
-**[Download MNScanTool_Setup.exe v1.0.0](https://github.com/hussaini021/usb-scan-tool/releases/download/v1.0.0/MNScanTool_Setup.exe)** 
-*(Windows 10/11, 64-bit)*
-
-Or view all releases: [github.com/hussaini021/usb-scan-tool/releases](https://github.com/hussaini021/usb-scan-tool/releases)
-
----
-
-### Option A — Install via Setup Wizard (Recommended)
-
-1. Download the `.exe` file using the link above
-2. Run as Administrator
-3. Follow the setup wizard
-4. Done ✅
+The installer will:
+- Install to `C:\Program Files\ShieldScan Pro\`
+- Create Desktop + Start Menu shortcuts
+- Register auto-start at Windows login
+- Add entry to Add/Remove Programs
 
 > ⚠️ **Administrator privileges are required** for USB monitoring and Windows Defender integration.
+
+### Option B — Run from Source
+
+```bash
+pip install PySide6 Pillow
+python shieldscan_pro_v5.py
+```
 
 ---
 
 ## ⚙️ How It Works
 
 ```
-  USB Device Connected
+USB Device Connected
+        │
+        ▼
+┌───────────────────┐
+│  ctypes polling   │  ← GetLogicalDrives() every 1.5 s
+│  detects new drive│
+└────────┬──────────┘
          │
          ▼
-  ┌─────────────────┐
-  │  WMI Event Fire │  ← Win32_LogicalDisk creation event
-  └────────┬────────┘
-           │
-           ▼
-  ┌─────────────────┐
-  │  ACCESS BLOCKED │  ← User is alerted, device locked
-  └────────┬────────┘
-           │
-           ▼
-  ┌─────────────────┐
-  │ User Permission │  ← Scan now / Deny access
-  └────────┬────────┘
-           │  (Scan approved)
-           ▼
-  ┌──────────────────────────────┐
-  │     SCAN PIPELINE            │
-  │  ┌────────────────────────┐  │
-  │  │ Windows Defender Scan  │  │
-  │  └────────────────────────┘  │
-  │  ┌────────────────────────┐  │
-  │  │ 9-Engine File Analysis │  │
-  │  └────────────────────────┘  │
-  └──────────────┬───────────────┘
-                 │
-         ┌───────┴───────┐
-         │               │
-    CLEAN ✅         THREAT ⚠️
-         │               │
-    Access           Device still
-    granted          blocked +
-                  Report generated
+┌───────────────────┐
+│  ACCESS BLOCKED   │  ← User alerted via dialog + toast
+└────────┬──────────┘
+         │  (User approves scan)
+         ▼
+┌────────────────────────────────────┐
+│         SCAN PIPELINE              │
+│                                    │
+│  ┌─────────────────────────────┐   │
+│  │  Windows Defender (thread)  │   │  ← runs in parallel
+│  └─────────────────────────────┘   │
+│                                    │
+│  ┌─────────────────────────────┐   │
+│  │  File Enumeration           │   │
+│  └────────────┬────────────────┘   │
+│               │                    │
+│  ┌────────────▼────────────────┐   │
+│  │  ThreadPoolExecutor         │   │
+│  │  (up to 8 parallel workers) │   │
+│  │  × 9 Detection Engines each │   │
+│  └────────────────────────────┘   │
+└───────────────┬────────────────────┘
+                │
+       ┌────────┴────────┐
+       │                 │
+  CLEAN ✅          THREAT ⚠️ / 🚨
+       │                 │
+  Access granted    Device blocked
+                   Report generated
+                   Toast + dialog shown
 ```
-
----
-
-## 📷 Screenshots
-
-> *Screenshots will be added after the first public release.*
-
-The UI uses a dark SSMS-inspired blue theme:
-- **Splash screen** — animated loading on startup
-- **Main window** — real-time scan log, progress bar, USB status
-- **Results window** — threat summary cards + detailed findings log
-- **HTML report** — exportable, styled security report
 
 ---
 
 ## 🖥️ Requirements
 
 | Requirement | Details |
-|---|---|
-| OS | Windows 10 / Windows 11 (64-bit) |
-| Python | 3.11 or higher (for source builds) |
-| Privileges | Administrator (required for USB monitoring + Defender) |
-| Dependencies | `tkinter` (built-in), `pillow` (optional), `pywin32` (optional) |
-| Windows Defender | Must be enabled for Defender integration |
-
-**Optional dependencies enhance detection:**
-- `pillow` — enables EXIF metadata scanning of images
-- `pywin32` — enables real-time USB auto-detection via WMI
-
-Without these, MN Scan Tool still works — it falls back to manual folder scan mode.
+|------------|---------|
+| **OS** | Windows 10 / 11 (64-bit) |
+| **Python** | 3.11 or higher (source build only) |
+| **Privileges** | Administrator — required |
+| **PySide6** | `pip install PySide6` |
+| **Pillow** | `pip install Pillow` — optional, enables EXIF scanning |
+| **Windows Defender** | Must be enabled for Defender integration |
 
 ---
 
 ## 🔨 Building from Source
 
-To build a standalone `.exe` using PyInstaller:
-
 ```bash
-pip install pyinstaller pillow pywin32
+# 1. Clone the repository
+git clone https://github.com/hussaini021/usb-scan-tool.git
+cd usb-scan-tool
 
-pyinstaller --onefile --windowed --icon=logo.ico \
-  --name MN_Scan_Tool mn_scan_tool.py
+# 2. Install dependencies
+pip install PySide6 Pillow pyinstaller
+
+# 3. Run the build script (as Administrator)
+build.bat
+
+# 4. Build the installer (requires NSIS installed)
+makensis shieldscan_installer.nsi
 ```
 
-The output will be in `dist/MN_Scan_Tool.exe`.
+Output: `ShieldScanPro_Setup_v5.0.0.exe`
 
-Then use the provided `installer.nsi` with [NSIS](https://nsis.sourceforge.io/) to build the setup wizard:
+The build script automatically:
+- Checks for Python and dependencies
+- Generates the trilingual license RTF
+- Compiles the executable with PyInstaller
+- Copies resources into the dist folder
 
-```bash
-makensis installer.nsi
-# Output: MNScanTool_Setup.exe
-```
+---
+
+## 📦 Release History
+
+| Version | Date | Highlights |
+|---------|------|-----------|
+| [**v5.0.0**](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0) | 2026 | Full rewrite — PySide6, parallel scanning, 14 bugs fixed, NSIS installer |
+| [**v1.0.0**](https://github.com/hussaini021/usb-scan-tool/releases/tag/v1.0.0) | 2026 | Initial release — Tkinter UI, WMI USB monitor, 9-engine scan |
 
 ---
 
 ## 👤 Author
 
-**Murtaza Hussaini**  
-Self-taught developer | Security tools enthusiast
-
-- 🐙 GitHub: [github.com/hussaini021](https://github.com/hussaini021)
-
----
-
-## 📜 License
-
-This software is licensed until **October 31, 2026**.  
-After the expiry date, the program will display a renewal notice and stop functioning.  
-For license renewal or commercial inquiries, contact via GitHub.
-
----
-
-## 🤝 Contributing
-
-This project was built independently with no funding or team support.  
-If you find it useful, a ⭐ star on GitHub goes a long way.  
-
-Bug reports, feature suggestions, and pull requests are welcome.
-
----
-
 <div align="center">
 
-**MN Scan Tool** — *Because every USB deserves to be questioned.*
+**Murtaza Hussaini**
+*Student Developer · Security Tools*
 
-Made with persistence, not resources.
+[![GitHub](https://img.shields.io/badge/GitHub-hussaini021-181717?style=for-the-badge&logo=github)](https://github.com/hussaini021)
+
+*Built with no team, no funding, and no shortcuts.*
+*Every line written in stolen hours, fueled by determination.*
+
+---
+
+**ShieldScan Pro** — *Because every USB deserves to be questioned.*
+
+⭐ If this project helped you, a star on GitHub means a lot.
 
 </div>
