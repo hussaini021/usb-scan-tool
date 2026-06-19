@@ -9,7 +9,7 @@
 [![Platform](https://img.shields.io/badge/Platform-Windows%2010%2F11-0078d4?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/hussaini021/usb-scan-tool/releases)
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3572A5?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![PySide6](https://img.shields.io/badge/UI-PySide6-41cd52?style=for-the-badge&logo=qt&logoColor=white)](https://doc.qt.io/qtforpython/)
-[![Version](https://img.shields.io/badge/Version-5.0.0-4cde9a?style=for-the-badge)](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0)
+[![Version](https://img.shields.io/badge/Version-5.0.0-4cde9a?style=for-the-badge)](https://github.com/hussaini021/usb-scan-tool/releases/tag/v2.0.0)
 [![License](https://img.shields.io/badge/License-Expires%20Oct%202026-f5d142?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-Active-4cde9a?style=for-the-badge)](https://github.com/hussaini021/usb-scan-tool)
 
@@ -25,7 +25,7 @@
 
 ## 📋 Table of Contents
 
-- [What's New in v5](#-whats-new-in-v5)
+- [What's New in v5](#-whats-new-in-v2)
 - [Overview](#-overview)
 - [Features](#-features)
 - [Detection Engines](#-detection-engines)
@@ -264,7 +264,7 @@ The build script automatically:
 
 | Version | Date | Highlights |
 |---------|------|-----------|
-| [**v5.0.0**](https://github.com/hussaini021/usb-scan-tool/releases/tag/v5.0.0) | 2026 | Full rewrite — PySide6, parallel scanning, 14 bugs fixed, NSIS installer |
+| [**v2.0.0**](https://github.com/hussaini021/usb-scan-tool/releases/tag/v2.0.0) | 2026 | Full rewrite — PySide6, parallel scanning, 14 bugs fixed, NSIS installer |
 | [**v1.0.0**](https://github.com/hussaini021/usb-scan-tool/releases/tag/v1.0.0) | 2026 | Initial release — Tkinter UI, WMI USB monitor, 9-engine scan |
 
 ---
